@@ -26,10 +26,9 @@ class MyFragment :BaseLazyFragment(){
     override fun getLayoutId()=R.layout.fragment_my
 
     override fun onlazyLoad() {
+        
 
-        CrashReport.testJavaCrash()
-
-}
+   }
 
 
 
