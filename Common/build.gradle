@@ -30,42 +30,24 @@ android {
         }
     }
 
-
-
-
-  /*  libraryVariants.all { variant ->
+    //配置  修改输出arr 文件名字
+    libraryVariants.all { variant ->
         variant.outputs.all { output ->
             def outputFile = output.outputFile
             if (outputFile != null && outputFile.name.endsWith('.aar')) {
                 outputFileName  =  getArtifactFileName()
             }
         }
-    }*/
-/*
-    def _BASENAME = "UnionPay";
-    def _VERSION = "_V0.6";
-    def _DestinationPath = "build/libs"; //生成jar包的位置
-    def zipFile = file('build/intermediates/packaged-classes/release/classes.jar'); //待打包文件位置
-
-    task deleteBuild(type:Delete){
-        delete _DestinationPath + _BASENAME + _VERSION + ".jar"
     }
-
-    task makeJar(type:Jar){
-        from zipTree(zipFile)
-        from fileTree(dir:'src/main',includes:['assets*//**']) //将assets目录打入jar包
-        baseName = _BASENAME + _VERSION
-        destinationDir = file(_DestinationPath)
-    }
-    makeJar.dependsOn(deleteBuild, build)*/
 
 }
 
- def getArtifactFileName() {
-    return "Common_${android.defaultConfig.versionName}.aar"
+def getArtifactFileName() {
+    return "common_${android.defaultConfig.versionName}.aar"
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
