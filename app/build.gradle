@@ -2,11 +2,13 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+def APPLICATION_ID="com.plus"
 android {
+    useLibrary 'org.apache.http.legacy'
     compileSdkVersion 28
     buildToolsVersion '28.0.3'
     defaultConfig {
-        applicationId "com.plus"
+        applicationId APPLICATION_ID
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
@@ -117,6 +119,11 @@ dependencies {
     //Bugly
     implementation 'com.tencent.bugly:crashreport:2.8.6.0'
     implementation 'com.tencent.bugly:nativecrashreport:3.6.0.0'
+
+
+    implementation 'cn.bmob.android:bmob-sdk:3.7.3-rc1'
+
+    implementation 'cn.bmob.android:http-legacy:1.0'
 }
 repositories {
     mavenCentral()
