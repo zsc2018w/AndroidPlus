@@ -23,6 +23,8 @@ import com.common.utils.StatusBarUtil
 import com.plus.R
 import com.plus.core.Constants
 import com.plus.main.bean.HomeBean
+import com.plus.utils.Log
+import com.plus.utils.Log1
 import com.shuyu.gsyvideoplayer.listener.LockClickListener
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
@@ -75,6 +77,14 @@ class VideoDetailsActivity : BaseActivity() ,VideoContract.View{
     }
 
 
+    override fun onNewIntent(intent: Intent?) {
+        super.onNewIntent(intent)
+        Log("11",content = "videoDetail--->onNewIntent")
+        initData(intent)
+        loadVideoInfo()
+     //   initView()
+    }
+
     override fun setBackground(url: String) {
         val requestOptions=RequestOptions()
         requestOptions
@@ -88,7 +98,7 @@ class VideoDetailsActivity : BaseActivity() ,VideoContract.View{
         StatusBarUtil.immersive(this, Color.parseColor("#000000"))*/
         mPresenter.attachView(this)
         setPresenter(mPresenter)
-        initData()
+        initData(intent)
         initTransition()
         initVideoViewConfig()
         mRecyclerView.layoutManager = LinearLayoutManager(this)
@@ -101,9 +111,10 @@ class VideoDetailsActivity : BaseActivity() ,VideoContract.View{
 
     }
 
-     fun initData() {
-        itemData = intent.getSerializableExtra(Constants.VIDE0_DETAIL_DATA) as HomeBean.Issue.Item
-        isTransition = intent.getBooleanExtra(TRANSITION, false)
+     fun initData(intent:Intent?) {
+         itemData = intent?.getSerializableExtra(Constants.VIDE0_DETAIL_DATA) as HomeBean.Issue.Item
+         isTransition = intent?.getBooleanExtra(TRANSITION, false)
+         Log(content = "initData")
        // saveWatchVideoHistoryInfo(itemData)
     }
     private fun initVideoViewConfig(){
@@ -187,6 +198,7 @@ class VideoDetailsActivity : BaseActivity() ,VideoContract.View{
     }
 
     private fun loadVideoInfo(){
+        Log(content = "loadVideoInfo 加载数据")
         mPresenter.loadVideoInfo(itemData)
     }
 

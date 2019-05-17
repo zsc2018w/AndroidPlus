@@ -30,13 +30,6 @@
                 android:text="二楼正在装修中"
                 android:layout_centerHorizontal="true" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/black"
-                android:text="上拉返回"
-               android:layout_alignParentBottom="true"
-                />
             <com.scwang.smartrefresh.layout.header.ClassicsHeader
                 android:id="@+id/classics"
                 android:layout_width="match_parent"

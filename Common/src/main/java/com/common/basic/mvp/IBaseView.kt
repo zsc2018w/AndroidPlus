@@ -23,6 +23,7 @@ interface IBaseView {
      */
     fun showToast(content:String)
 
+
     /**
      * 显示错误视图
      */

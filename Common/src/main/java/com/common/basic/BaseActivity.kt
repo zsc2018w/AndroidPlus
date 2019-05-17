@@ -55,6 +55,8 @@ import com.common.utils.ScreenAdapter
         }
     }
 
+
+
     override fun showError(errorMsg: String, errorCode: Int) {
         showToast(errorMsg)
     }

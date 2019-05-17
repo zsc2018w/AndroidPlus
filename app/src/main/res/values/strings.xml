@@ -17,4 +17,9 @@
     <string name="about">关于</string>
 
 
+
+    <string name="header_scrolling_behavior">com.plus.test.HeaderScrollingBehavior</string>
+    <string name="header_float_behavior">com.plus.test.HeaderFloatBehavior</string>
+
+
 </resources>

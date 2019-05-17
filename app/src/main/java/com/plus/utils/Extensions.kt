@@ -10,10 +10,14 @@ import com.bumptech.glide.request.RequestOptions
 import com.common.basic.BaseApplication
 import java.net.URL
 
-/**
- * Created by xuhao on 2017/11/14.
- */
 
+fun Any.Log( key:String="plusd",content:String){
+    android.util.Log.d(key,"start--->"+content)
+}
+
+fun Any.Log1( key:String="plusd",content:String,conten1t:String){
+    android.util.Log.d(key,"start--->"+content)
+}
 fun Fragment.showToast(content: String): Toast {
     val toast = Toast.makeText(this.activity?.applicationContext, content, Toast.LENGTH_SHORT)
     toast.show()

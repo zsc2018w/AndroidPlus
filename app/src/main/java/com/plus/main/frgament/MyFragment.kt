@@ -12,6 +12,9 @@ import com.plus.utils.IPutils
 import com.tencent.bugly.crashreport.CrashReport
 import kotlinx.android.synthetic.main.fragment_my.*
 import kotlin.concurrent.thread
+import android.provider.Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES
+import android.content.Intent
+import android.provider.Settings
 
 
 /**
@@ -34,9 +37,10 @@ class MyFragment :BaseLazyFragment(){
 
     override fun onlazyLoad() {
 
+        val intent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES)
      //   CrashReport.testJavaCrash()
 
-        val person:Person= Person()
+       /* val person:Person= Person()
         person.name="中华人民共和国"
 
         person.save(object : SaveListener<String>() {
@@ -47,10 +51,10 @@ class MyFragment :BaseLazyFragment(){
                    Log.d("ttt1","失败"+e.message)
                }
             }
-        })
+        })*/
 
 
-        layout1.setOnClickListener({
+  /*      layout1.setOnClickListener({
             Thread(object :Runnable{
                 override fun run() {
 
@@ -67,7 +71,7 @@ class MyFragment :BaseLazyFragment(){
 
             }).start()
         })
-
+*/
 
 }
 

@@ -1,6 +1,11 @@
 package com.plus.video
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +16,7 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hazz.kotlinmvp.glide.GlideRoundTransform
 import com.plus.R
+import com.plus.core.Constants
 import com.plus.main.adapter.HomeAdapter
 import com.plus.main.bean.HomeBean
 import com.plus.utils.durationFormat
@@ -63,6 +69,13 @@ class VideoDetailAdapter(val mContext:Context,var data: ArrayList<HomeBean.Issue
            }
 
        }
+
+        holder.itemView.setOnClickListener({
+            if(ITEM_TYPE_SMALL_VIDEO==getItemViewType(position)){
+                goToVideoPlayer(mContext as Activity,holder.itemView,mData)
+            }
+        })
+
     }
 
     private fun inflaterView(parent:ViewGroup,viewId:Int):View{
@@ -122,6 +135,21 @@ class VideoDetailAdapter(val mContext:Context,var data: ArrayList<HomeBean.Issue
         }*/
     }
 
+
+    private fun goToVideoPlayer(activity: Activity, view: View, itemData: HomeBean.Issue.Item){
+        val intent = Intent(activity, VideoDetailsActivity::class.java)
+        intent.putExtra(Constants.VIDE0_DETAIL_DATA, itemData)
+        intent.putExtra(VideoDetailsActivity.TRANSITION, true)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            val pair = Pair(view, VideoDetailsActivity.IMG_TRANSITION)
+            val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    activity, pair)
+            ActivityCompat.startActivity(activity, intent, activityOptions.toBundle())
+        } else {
+            activity.startActivity(intent)
+            //activity.overridePendingTransition(R.anim.anim_in, R.anim.anim_out)
+        }
+    }
     fun addData(item: ArrayList<HomeBean.Issue.Item>) {
         data.addAll(item)
         notifyDataSetChanged()

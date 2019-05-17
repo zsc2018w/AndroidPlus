@@ -101,7 +101,7 @@ dependencies {
     implementation 'com.alibaba:arouter-api:1.3.1'
     annotationProcessor 'com.alibaba:arouter-compiler:1.1.4'*/
     implementation 'com.zyao89:zloading:1.2.0'
-   // implementation project(':Common')
+    implementation project(':Common')
     implementation 'com.squareup.retrofit2:converter-scalars:2.0.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     //Banner
@@ -126,7 +126,7 @@ dependencies {
     implementation 'cn.bmob.android:http-legacy:1.0'
 
 
-    compile(name: 'common_1.0', ext: 'aar')
+    //compile(name: 'common_1.0', ext: 'aar')
 }
 repositories {
     mavenCentral()
