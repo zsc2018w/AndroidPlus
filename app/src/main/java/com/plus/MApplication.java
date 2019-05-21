@@ -1,7 +1,10 @@
 package com.plus;
 
 
+import android.util.Log;
+
 import com.common.basic.BaseApplication;
+import com.meituan.android.walle.WalleChannelReader;
 import com.tencent.bugly.crashreport.CrashReport;
 
 import cn.bmob.v3.Bmob;
@@ -28,5 +31,7 @@ public class MApplication extends BaseApplication {
         CrashReport.initCrashReport(getApplicationContext(), "5e46d517a0", true);
 
         Bmob.initialize(this, "4666abb36a74a96aa445547379de1c20");
+        String channel = WalleChannelReader.getChannel(this.getApplicationContext());
+        Log.d("qd","当前渠道信息"+channel);
     }
 }

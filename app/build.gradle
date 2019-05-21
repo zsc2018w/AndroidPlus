@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'walle'
 
 def APPLICATION_ID="com.plus"
 android {
@@ -46,7 +47,7 @@ android {
             storePassword "123456"
             keyAlias "p"
             keyPassword "123456"
-            v2SigningEnabled false
+            v2SigningEnabled true
         }
     }
     buildTypes {
@@ -56,7 +57,7 @@ android {
             //ZipAlign优化
             zipAlignEnabled true
             //移除无用的resource文件
-            //shrinkResources true
+            shrinkResources true
             minifyEnabled true
             //使用正式的签名信息，不混淆代码
             signingConfig signingConfigs.release
@@ -125,9 +126,22 @@ dependencies {
 
     implementation 'cn.bmob.android:http-legacy:1.0'
 
-
+    //walle
+    implementation 'com.meituan.android.walle:library:1.1.6'
     //compile(name: 'common_1.0', ext: 'aar')
 }
+walle {
+// 指定渠道包的输出路径
+
+    apkOutputFolder = new File("${project.buildDir}/outputs/channels");
+// 定制渠道包的APK的文件名称
+    apkFileNameFormat = '${appName}-${packageName}-${channel}-${buildType}-v${versionName}-${versionCode}-${buildTime}.apk';
+// 渠道配置文件
+    channelFile = new File("${project.getProjectDir()}/channel")
+}
+
 repositories {
     mavenCentral()
 }
+
+

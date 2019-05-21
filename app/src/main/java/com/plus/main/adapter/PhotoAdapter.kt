@@ -58,6 +58,13 @@ class PhotoAdapter(val mContext: Context) : RecyclerView.Adapter<RecyclerView.Vi
         requestOptions.placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)
 
         Glide.with(mContext).applyDefaultRequestOptions(requestOptions).load(photoGirl.url).into(viewHolder.itemView.findViewById<ImageView>(R.id.iv_photo))
+        viewHolder.itemView.findViewById<ImageView>(R.id.iv_photo).setOnLongClickListener {
+
+            dataList.removeAt(position)
+            notifyItemRemoved(position)
+            notifyItemRangeChanged(position,dataList.size)
+            return@setOnLongClickListener true
+        }
         viewHolder.itemView.findViewById<ImageView>(R.id.iv_photo).setOnClickListener {
 
             val intent = Intent(mContext, PhotoBrowseActivity::class.java)
